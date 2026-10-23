@@ -21,15 +21,22 @@ async function main() {
 
   try {
     await Database.ping();
+    console.log('Conexión a MySQL exitosa');
   } catch (err) {
+    console.error('ERROR MYSQL COMPLETO:');
     console.error(err);
     process.exit(1);
   }
 
-  // 0.0.0.0 para que el celular (misma red Wi-Fi) pueda llegar al servidor.
+  // 0.0.0.0 para que el celular pueda acceder al servidor
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`API lista en http://localhost:${PORT}/api`);
-    lanAddresses().forEach((ip) => console.log(`  Desde tu celular (misma red Wi-Fi): http://${ip}:${PORT}/api`));
+
+    lanAddresses().forEach((ip) => {
+      console.log(
+        `Desde tu celular (misma red Wi-Fi): http://${ip}:${PORT}/api`
+      );
+    });
   });
 }
 
