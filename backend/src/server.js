@@ -22,8 +22,7 @@ async function main() {
   try {
     await Database.ping();
   } catch (err) {
-    console.error('No se pudo conectar a MySQL:', err.message);
-    console.error('Revisa que MySQL esté encendido, que los datos de .env sean correctos y que hayas corrido "npm run setup".');
+    console.error(err);
     process.exit(1);
   }
 
